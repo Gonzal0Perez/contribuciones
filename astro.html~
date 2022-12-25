@@ -1,0 +1,26 @@
+<!doctype html>
+<!--
+-->
+<html>
+<head>
+    <title>ASTRO</title>
+</head>
+<body>
+  <FORM METHOD="POST" ENCTYPE="multipart/form-data" ACTION="astro.html">
+    <p>AÑO: <input name="yeard" /></p>
+    <p>MES: <input name="mond" /></p>
+    <p>DIA: <input name="dayd" /></p>
+    <p>HORA: <input name="horad" /></p>
+    <p>MINUTOS: <input name="mind" /></p>
+    <p>LONGITUD: <input name="longitud" /></p>
+    <select name="sistemd">
+      <option value="UTC">UTC</option>
+      <option value="LOCAL">LOCAL</option>
+    </select>
+    <p>LATITUD: <input name="latitud" /></p>
+    <p>TIMEZONE: <input name="timezone" /></p>
+    <input type="submit" value="ASTRO"/>
+  </FORM>
+</body>
+</html>
+

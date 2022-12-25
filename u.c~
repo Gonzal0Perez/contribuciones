@@ -1,0 +1,4 @@
+char As[6]={'A', "AAA", 'A'};
+int main(int argc, char *argv[]) {
+  printf("%s", As);
+}

@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc, char *argv[]) {
+  int l3=1;
+  double opentimes[l3]={1};
+  double highs[l3]={1};
+  double lows[l3]={1};
+  double openo[l3]={1};
+  double closeo[l3]={1};
+  double price=0;
+  double priceh=price+(price*0.05);
+  double price_porencimadecinco_atras=0;
+  double price_porencimadecinco_adelante=0;
+  double pricel=price-(price*0.05);
+  double price_pordebajodecinco_adelante=0;
+  double price_pordebajodecinco_atras=0;
+  double pivot=0;
+  double resistance=0;
+  double support=0;
+  double resistance_atras=0;
+  double support_atras=0;
+  double resistance_adelante=0;
+  double support_adelante=0;
+  double pivot_atras=0;
+  double pivot_adelante=0;
+  long porencimadecinco_atras=0;
+  long pordebajodecinco_atras=0;
+  long porencimadecinco_adelante=0;
+  long pordebajodecinco_adelante=0;
+  double timestart=0;
+  int i=1;
+  int j=0;
+  int k=0;
+  while(i<l3) {
+    if(opentimes[i]>=timestart) break;
+    i++;
+  }
+  k=i;
+  j=i;
+  while(j<sizeof(opentimes)/sizeof(double)) {
+    if (porencimadecinco_adelante>0 && pordebajodecinco_adelante>0) break;
+    if (porencimadecinco_adelante<(double)1 && highs[j]>=priceh) {
+      porencimadecinco_adelante=(long)(opentimes[j]/1000);
+      price_porencimadecinco_adelante=highs[j];
+    }
+    if (pordebajodecinco_adelante<(double)1 && lows[j]<=pricel) {
+      pordebajodecinco_adelante=(long)(opentimes[j]/1000);
+      price_pordebajodecinco_adelante=lows[j];
+    }
+    j++;
+  }
+  j=i;
+  while(j<sizeof(opentimes)/sizeof(double)) {
+    pivot=(openo[j]+closeo[j]+closeo[j]+highs[j]+lows[j])/5;
+    resistance=(2*p)-lows[j];
+    if(resistance>resistance_adelante)resistance_adelante=resistance; 
+    support=(2*p)-lows[j];
+    if(support>support_adelante)support_adelante=support; 
+    j++;
+  }
+  while(k>0) {
+    pivot=(openo[i]+closeo[i]+closeo[i]+highs[i]+lows[i])/5;
+    resistance=(2*p)-lows[i];
+    if(resistance>resistance_atras)resistance_atras=resistance; 
+    support=(2*p)-lows[i];
+    if(support>support_atras)support_atras=support;     
+    k=k-1;
+  }
+  while(i>0) {
+    if (porencimadecinco_atras>0 && pordebajodecinco_atras>0) break;
+    if (porencimadecinco_atras<(double)1 && highs[i]>=priceh) {
+      porencimadecinco_atras=(long)(opentimes[i]/1000);
+      price_porencimadecinco_atras=highs[i];
+    }
+    if (pordebajodecinco_atras<(double)1 && lows[i]<=pricel) {
+      pordebajodecinco_atras=(long)(opentimes[i]/1000);
+      price_pordebajodecinco_atras=lows[i];
+    }
+    i--;
+  }
+  printf("long porencimadecinco_adelante=%08ld;\n double price_porencimadecinco_adelante=%08lf;\n", porencimadecinco_adelante, price_porencimadecinco_adelante);
+  printf("long pordebajodecinco_adelante=%08ld;\n double price_pordebajodecinco_adelante=%08lf;\n", pordebajodecinco_adelante, price_pordebajodecinco_adelante);
+  printf("long porencimadecinco_atras=%08ld;\n double price_porencimadecinco_atras=%08lf;\n", porencimadecinco_atras, price_porencimadecinco_atras);
+  printf("long pordebajodecinco_atras=%08ld;\n double price_pordebajodecinco_atras=%08lf;\n", pordebajodecinco_atras, price_pordebajodecinco_atras);
+  printf("double support_atras=%08lf;\n double support_adelante=%08lf;\n", support_atras, support_adelante);
+  printf("double resistance_atras=%08lf;\n double resistance_adelante=%08lf;\n", resistance_atras, resistance_adelante);
+}
